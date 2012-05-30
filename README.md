@@ -1,21 +1,16 @@
-PHP File Download
-=================
-
+# PHP File Download
 A class to help with creating downloads for files in PHP.
 
 
-Hint
-----
-
+## Advice
 If you can use direct downloads, you should just use them.
 This class is for providing downloads of files out of PHP, for example if you want to provide a download to a temporarily created file.
 
 
-Usage
-=====
+# Usage
 
-Create a download for a file on your file system
----
+
+## Create a download for a file on your file system
 ```
 <?php
 
@@ -24,8 +19,7 @@ Create a download for a file on your file system
 ```
 
 
-Create a download for a file via file pointer
----
+## Create a download for a file via file pointer
 ```
 <?php
 
@@ -35,8 +29,7 @@ Create a download for a file via file pointer
 ```
 
 
-Create a download for a file via the content
----
+## Create a download for a file via the content
 ```
 <?php
 
