@@ -9,6 +9,11 @@ This class is for providing downloads of files out of PHP, for example if you wa
 
 # Usage
 
+The examples assume, that you have included the namespace:
+```php
+use Apfelbox\FileDownload\FileDownload;
+```
+
 
 ## Create a download for a file on your file system
 ```php

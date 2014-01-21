@@ -7,6 +7,9 @@
  * @license MIT
  */
 
+namespace Apfelbox\FileDownload;
+
+use Skyzyx\Components\Mimetypes\Mimetypes;
 
 /**
  * Provides a simple way to create file downloads in PHP
@@ -27,13 +30,13 @@ class FileDownload
      *
      * @param resource $filePointer
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function __construct ($filePointer)
     {
         if (!is_resource($filePointer))
         {
-            throw new InvalidArgumentException("You must pass a file pointer to the ctor");
+            throw new \InvalidArgumentException("You must pass a file pointer to the ctor");
         }
 
         $this->filePointer = $filePointer;
@@ -81,20 +84,11 @@ class FileDownload
      */
     private function getMimeType ($fileName)
     {
-        switch (pathinfo($fileName, PATHINFO_EXTENSION))
-        {
-            case "pdf": return "application/pdf";
-            case "exe": return "application/octet-stream";
-            case "zip": return "application/zip";
-            case "doc": return "application/msword";
-            case "xls": return "application/vnd.ms-excel";
-            case "ppt": return "application/vnd.ms-powerpoint";
-            case "gif": return "image/gif";
-            case "png": return "image/png";
-            case "jpeg":
-            case "jpg": return "image/jpg";
-            default: return "application/force-download";
-        }
+        $fileExtension  = pathinfo($fileName, PATHINFO_EXTENSION);
+        $mimeTypeHelper = Mimetypes::getInstance();
+        $mimeType       = $mimeTypeHelper->fromExtension($fileExtension);
+
+        return !is_null($mimeType) ? $mimeType : "application/force-download";
     }
 
 
