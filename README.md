@@ -25,7 +25,7 @@ $fileDownload->sendDownload("download.pdf");
 ```
 
 
-## Create a download for a file via the content
+## Create a download for a file via content
 ```php
 $content = "This is the content of the file:";
 $fileDownload = FileDownloader::createFromString($content);
