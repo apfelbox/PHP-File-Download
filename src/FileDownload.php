@@ -48,10 +48,11 @@ class FileDownload
      * Sends the download to the browser
      *
      * @param string $filename
+     * @param bool $forceDownload
      *
      * @throws \RuntimeException is thrown, if the headers are already sent
      */
-    public function sendDownload ($filename)
+    public function sendDownload ($filename, $forceDownload = true)
     {
         if (headers_sent())
         {
@@ -63,7 +64,16 @@ class FileDownload
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header("Cache-Control: private", false);
         header("Content-Type: {$this->getMimeType($filename)}");
-        header("Content-Disposition: attachment; filename=\"{$filename}\";" );
+
+        if ($forceDownload)
+        {
+            header("Content-Disposition: attachment; filename=\"{$filename}\";" );
+        }
+        else
+        {
+            header("Content-Disposition: filename=\"{$filename}\";" );
+        }
+
         header("Content-Transfer-Encoding: binary");
         header("Content-Length: {$this->getFileSize()}");
 
