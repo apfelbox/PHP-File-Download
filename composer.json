@@ -4,7 +4,7 @@
     "description": "A library to help with creating downloads for files in PHP",
     "keywords":    ["download"],
     "homepage":    "https://github.com/apfelbox/PHP-File-Download",
-    "license":     "MIT",
+    "license":     "BSD-3-Clause",
     "authors": [
         {
             "name":     "Jannik Zschiesche",
