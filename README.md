@@ -17,7 +17,7 @@ use Apfelbox\FileDownload\FileDownload;
 
 ## Create a download for a file on your file system
 ```php
-$fileDownload = FileDownloader::createFromFilePath("/path/to/file.pdf");
+$fileDownload = FileDownload::createFromFilePath("/path/to/file.pdf");
 $fileDownload->sendDownload("download.pdf");
 ```
 
@@ -25,7 +25,7 @@ $fileDownload->sendDownload("download.pdf");
 ## Create a download for a file via file pointer
 ```php
 $file = /* your file, somewhere opened with fopen() or tmpfile(), etc.. */;
-$fileDownload = new FileDownloader($file);
+$fileDownload = new FileDownload($file);
 $fileDownload->sendDownload("download.pdf");
 ```
 
@@ -33,7 +33,7 @@ $fileDownload->sendDownload("download.pdf");
 ## Create a download for a file via content
 ```php
 $content = "This is the content of the file:";
-$fileDownload = FileDownloader::createFromString($content);
+$fileDownload = FileDownload::createFromString($content);
 $fileDownload->sendDownload("download.txt");
 ```
 
@@ -47,6 +47,6 @@ $pdf->pages[] = $page;
 
 /* draw content in the pdf ... */
 
-$fileDownload = FileDownloader::createFromString($pdf->render());
+$fileDownload = FileDownload::createFromString($pdf->render());
 $fileDownload->sendDownload("download.pdf");
 ```
