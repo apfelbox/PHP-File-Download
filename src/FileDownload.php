@@ -77,9 +77,13 @@ class FileDownload
         header("Content-Transfer-Encoding: binary");
         header("Content-Length: {$this->getFileSize()}");
 
-        @ob_clean();
-
-        rewind($this->filePointer);
+        @ob_end_clean();
+        
+        $meta = stream_get_meta_data($this->filePointer);
+        
+        if( $meta['seekable'] == true )
+            rewind($this->filePointer);
+        
         fpassthru($this->filePointer);
     }
 
