@@ -78,8 +78,12 @@ class FileDownload
         header("Content-Length: {$this->getFileSize()}");
 
         @ob_clean();
-
-        rewind($this->filePointer);
+        
+        $meta = stream_get_meta_data($this->filePointer);
+        
+        if( $meta['seekable'] == true )
+            rewind($this->filePointer);
+        
         fpassthru($this->filePointer);
     }
 
